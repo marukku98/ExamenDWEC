@@ -4,6 +4,20 @@ var posPregunta;        // Posició de la pregunta actual
 var maxPreguntes;       // Num maxim de preguntes
 var intTemps = null;    // Interval amb el contador de temps
 
+window.onload = function () {
+    creaCookieSiExiste(0, 1);
+    creaCookieSiExiste(1, 2);
+    creaCookieSiExiste(2, 1);
+}
+
+function creaCookieSiExiste(numPregunta, valor) {
+    if (!getCookie("Pregunta" + numPregunta)) {
+        setCookie("Pregunta" + numPregunta, valor, 100);
+    }
+}
+
+
+
 // Funció per a crear una pregunta
 function crearPregunta(id, pregunta, resposta1, resposta2) {
     return {
@@ -64,13 +78,13 @@ function ValidarRespuesta(codiPregunta, codiResposta, callbackResultat) {
 
 /* Mostra per pantalla la informació del resultat de la pregunta durant 10 segons
  Acte seguit mostra la seguent pregunta */
-function test(codiPregunta, resultat){
+function test(codiPregunta, resultatbool) {
 
     var resultat = $("#resultat");
     var codi = $("#codi");
 
     codi.html(codiPregunta);
-    if (resultat) {
+    if (resultatbool) {
         resultat.html("Correcte");
     } else {
         resultat.html("Incorrecte");
@@ -86,10 +100,10 @@ function test(codiPregunta, resultat){
 
         if (maxPreguntes > posPregunta) {
             MostraPregunta();
-        } else{
+        } else {
             alert("Joc finalitzat!");
         }
-    }, 10 * 1000);
+    }, 1 * 1000);
 }
 
 // Retorna el valor del radiobutton seleccionat

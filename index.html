@@ -13,7 +13,7 @@
     <script src="js/cookies.js"></script>
 </head>
 
-<body>
+<body class="p-2">
     <h1>Joc de preguntes</h1>
 
     <button class="btn btn-primary" onclick="start()">Executar test</button>
@@ -24,15 +24,27 @@
         </h4>
 
         <h3 id="pregunta"></h3>
-        <input type="radio" name="resposta" id="resposta1" value="1" checked>
-        <span id="textResposta1"></span>
-        <input type="radio" name="resposta" id="resposta2" value="2">
-        <span id="textResposta2"></span>
+        <div class="radio">
+            <label>
+                <input type="radio" name="resposta" value="1" checked>
+                <span id="textResposta1"></span>
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="resposta" value="2">
+                <span id="textResposta2"></span>
+            </label>
+        </div>
 
         <div id="infoResultat" style="margin-top: 50px">
             <h3>Estat pregunta: </h3>
-            <h4>Codi pregunta: <span id="codi"></span></h4>
-            <h4>Resultat: <span id="resultat"></span></h4>
+            <h4>Codi pregunta:
+                <span id="codi"></span>
+            </h4>
+            <h4>Resultat:
+                <span id="resultat"></span>
+            </h4>
         </div>
 
     </div>
