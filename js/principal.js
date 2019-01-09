@@ -1,10 +1,10 @@
-var temps = 10;
-var preguntaActual;
-var posPregunta;
-var maxPreguntes;
-var intTemps = null;
+var temps = 10;         // Temps per a cada pregunta
+var preguntaActual;     // Pregunta actual
+var posPregunta;        // Posició de la pregunta actual
+var maxPreguntes;       // Num maxim de preguntes
+var intTemps = null;    // Interval amb el contador de temps
 
-
+// Funció per a crear una pregunta
 function crearPregunta(id, pregunta, resposta1, resposta2) {
     return {
         id: id,
@@ -14,13 +14,15 @@ function crearPregunta(id, pregunta, resposta1, resposta2) {
     }
 }
 
+// Llistat de preguntes
 var preguntes = [
     crearPregunta(0, "Com es diu el creador del joc?", "Marc", "Pedro"),
-    crearPregunta(1, "Com es diu el professor?", "Test", "Antionio"),
+    crearPregunta(1, "Com es diu el professor?", "Test", "Antonio"),
     crearPregunta(2, "Que ha utilitzat per guardar les respostes?", "Cookies", "Variables")
 ]
 
-function test() {
+// Comença el joc
+function start() {
     posPregunta = 0;
     preguntaActual = null;
     maxPreguntes = preguntes.length;
@@ -28,11 +30,11 @@ function test() {
     MostraPregunta();
 }
 
+// Mostra la pregunta actual y dona temps per a respondre
 function MostraPregunta() {
     preguntaActual = preguntes[posPregunta];
 
     $("#pregunta").html(preguntaActual.pregunta);
-    $("#codi").html(preguntaActual.id);
     $("#textResposta1").html(preguntaActual.resposta1);
     $("#textResposta2").html(preguntaActual.resposta2);
 
@@ -47,35 +49,50 @@ function MostraPregunta() {
 
             var resposta = getSeleccionat("resposta");
 
-            ValidarRespuesta(preguntaActual.id, resposta);
+            // Valida la resposta passant test com a callback
+            ValidarRespuesta(preguntaActual.id, resposta, test);
         }
     }, 1000);
 }
 
-function ValidarRespuesta(codiPregunta, codiResposta) {
+// Valida la resposta donada y envia el resultat al callback passat per parametre
+function ValidarRespuesta(codiPregunta, codiResposta, callbackResultat) {
     var respostaCorrecta = getCookie("Pregunta" + codiPregunta);
 
+    callbackResultat(codiPregunta, respostaCorrecta == codiResposta);
+}
+
+/* Mostra per pantalla la informació del resultat de la pregunta durant 10 segons
+ Acte seguit mostra la seguent pregunta */
+function test(codiPregunta, resultat){
+
     var resultat = $("#resultat");
-    if (respostaCorrecta == codiResposta) {
+    var codi = $("#codi");
+
+    codi.html(codiPregunta);
+    if (resultat) {
         resultat.html("Correcte");
     } else {
         resultat.html("Incorrecte");
     }
 
+    // Neteja la info del estat de la jugada i mostra la seguent pregunta despres de mostrar el resultat 10 segons
     setTimeout(function () {
         temps = 10;
         posPregunta++;
 
         resultat.html("");
+        codi.html("");
 
         if (maxPreguntes > posPregunta) {
             MostraPregunta();
         } else{
             alert("Joc finalitzat!");
         }
-    }, 1000);
+    }, 10 * 1000);
 }
 
+// Retorna el valor del radiobutton seleccionat
 function getSeleccionat(nom) {
     var seleccionat;
 

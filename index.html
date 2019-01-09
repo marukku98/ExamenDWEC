@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Examen DWEC</title>
@@ -11,22 +12,30 @@
     <script src="js/principal.js"></script>
     <script src="js/cookies.js"></script>
 </head>
+
 <body>
     <h1>Joc de preguntes</h1>
 
-    <button class="btn btn-primary" onclick="test()">Executar test</button>
+    <button class="btn btn-primary" onclick="start()">Executar test</button>
 
     <div id="joc">
-        <h3>Temps restant: <span id="temps"></span></h3>
+        <h4>Temps restant:
+            <span id="temps"></span>
+        </h4>
 
-        <h4 id="pregunta"></h4>
-        <h5>Codi pregunta: <span id="codi"></span></h5>
-        <input type="radio" name="resposta" id="resposta1" value="1" checked><span id="textResposta1"></span>
-        <input type="radio" name="resposta" id="resposta2" value="2"><span id="textResposta2"></span>
+        <h3 id="pregunta"></h3>
+        <input type="radio" name="resposta" id="resposta1" value="1" checked>
+        <span id="textResposta1"></span>
+        <input type="radio" name="resposta" id="resposta2" value="2">
+        <span id="textResposta2"></span>
 
-        <h2 id="resultat">
+        <div id="infoResultat" style="margin-top: 50px">
+            <h3>Estat pregunta: </h3>
+            <h4>Codi pregunta: <span id="codi"></span></h4>
+            <h4>Resultat: <span id="resultat"></span></h4>
+        </div>
 
-        </h2>
     </div>
 </body>
+
 </html>
