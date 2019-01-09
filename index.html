@@ -14,11 +14,14 @@
 <body>
     <h1>Joc de preguntes</h1>
 
+    <button class="btn btn-primary" onclick="test()">Executar test</button>
+
     <div id="joc">
         <h3>Temps restant: <span id="temps"></span></h3>
 
         <h4 id="pregunta"></h4>
-        <input type="radio" name="resposta" id="resposta1" value="1"><span id="textResposta1"></span>
+        <h5>Codi pregunta: <span id="codi"></span></h5>
+        <input type="radio" name="resposta" id="resposta1" value="1" checked><span id="textResposta1"></span>
         <input type="radio" name="resposta" id="resposta2" value="2"><span id="textResposta2"></span>
 
         <h2 id="resultat">
